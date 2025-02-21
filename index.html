@@ -1,61 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Under Maintenance</title>
+    <title>الصيانة</title>
     <style>
         body {
-            background-color: black;
-            color: white;
-            text-align: center;
+            font-family: Arial, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            margin: 0;
-            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
         }
-        .container {
-            max-width: 600px;
+        .message {
+            background: white;
             padding: 20px;
-        }
-        .language-switch {
-            margin-top: 20px;
-        }
-        button {
-            background-color: gray;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            margin: 5px;
-        }
-        button:hover {
-            background-color: white;
-            color: black;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Under Maintenance</h1>
-        <p>Sorry for the inconvenience. Please try again later.</p>
-        <div class="language-switch">
-            <button onclick="switchToEnglish()">English</button>
-            <button onclick="switchToArabic()">العربية</button>
-        </div>
+    <div class="message">
+        <h1>الموقع تحت الصيانة</h1>
+        <p>نحن نعمل حاليًا على تحسين تجربتك. شكرًا لصبرك!</p>
     </div>
-
-    <script>
-        function switchToEnglish() {
-            document.querySelector('h1').innerText = 'Under Maintenance';
-            document.querySelector('p').innerText = 'Sorry for the inconvenience. Please try again later.';
-        }
-        function switchToArabic() {
-            document.querySelector('h1').innerText = 'تحت الصيانة';
-            document.querySelector('p').innerText = 'نعتذر عن الإزعاج. الرجاء المحاولة لاحقًا.';
-        }
-    </script>
 </body>
 </html>
