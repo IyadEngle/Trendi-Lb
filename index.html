@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Under Maintenance</title>
+    <style>
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+        }
+        
+        .container {
+            text-align: center;
+            max-width: 600px;
+            padding: 20px;
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        
+        p {
+            font-size: 1.2em;
+            line-height: 1.5;
+        }
+        
+        .lang-switch {
+            margin-top: 30px;
+        }
+        
+        button {
+            background-color: #444;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 0 5px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        
+        button:hover {
+            background-color: #666;
+        }
+        
+        button:disabled {
+            background-color: #333;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 data-en="Under Maintenance" data-ar="موقع تحت الصيانة">Under Maintenance</h1>
+        <p data-en="We're currently performing maintenance. Please try again later." 
+           data-ar="نحن نقوم حاليًا بإجراء الصيانة. الرجاء المحاولة مرة أخرى لاحقًا.">
+            We're currently performing maintenance. Please try again later.
+        </p>
+        
+        <div class="lang-switch">
+            <button onclick="changeLanguage('en')" id="enBtn" disabled>English</button>
+            <button onclick="changeLanguage('ar')" id="arBtn">العربية</button>
+        </div>
+        
+        <p style="margin-top: 30px; font-size: 0.9em;" 
+           data-en="* Language switch for quick preview only" 
+           data-ar="* تغيير اللغة للعرض السريع فقط">
+            * Language switch for quick preview only
+        </p>
+    </div>
+
+    <script>
+        function changeLanguage(lang) {
+            // Update content
+            document.querySelectorAll('[data-en], [data-ar]').forEach(element => {
+                element.textContent = element.getAttribute(`data-${lang}`);
+            });
+
+            // Update button states
+            document.getElementById('enBtn').disabled = (lang === 'en');
+            document.getElementById('arBtn').disabled = (lang === 'ar');
+
+            // Update document direction
+            document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+            document.documentElement.setAttribute('lang', lang);
+        }
+    </script>
+</body>
+</html>
