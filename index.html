@@ -1,120 +1,48 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Under Maintenance</title>
     <style>
-        :root {
-            --bg-color: #000000;
-            --text-color: #ffffff;
-            --btn-bg: #444444;
-        }
-        
         body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
+            background-color: black;
+            color: white;
+            text-align: center;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-family: 'Arial', sans-serif;
-            transition: all 0.3s;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
         }
-
         .container {
-            text-align: center;
             max-width: 600px;
-            padding: 20px;
         }
-
-        h1 {
-            font-size: clamp(1.5rem, 5vw, 2.5rem);
-            margin: 0 0 20px 0;
-        }
-
-        p {
-            font-size: clamp(0.9rem, 2.5vw, 1.2rem);
-            line-height: 1.6;
-        }
-
-        .lang-switch {
-            margin-top: 30px;
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-        }
-
-        button {
-            background-color: var(--btn-bg);
-            color: var(--text-color);
-            border: none;
-            padding: 12px 24px;
-            cursor: pointer;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-            font-size: 1rem;
-        }
-
-        button:hover {
-            background-color: #666666;
-        }
-
-        button:disabled {
-            background-color: #333333;
-            cursor: not-allowed;
-        }
-
-        /* RTL Support */
-        [dir="rtl"] {
-            font-family: 'Arial Arabic', 'Segoe UI', sans-serif;
+        .language-switch {
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1 data-en="Under Maintenance" data-ar="الموقع قيد الصيانة">Under Maintenance</h1>
-        <p data-en="We're currently performing scheduled maintenance. Please check back later." 
-           data-ar="نقوم حاليًا بإجراء صيانة مخططة. يرجى المحاولة مرة أخرى لاحقًا.">
-            We're currently performing scheduled maintenance. Please check back later.
-        </p>
-        
-        <div class="lang-switch">
-            <button onclick="changeLanguage('en')" id="enBtn" disabled>English</button>
-            <button onclick="changeLanguage('ar')" id="arBtn">العربية</button>
+        <h1>Under Maintenance</h1>
+        <p>Sorry for the inconvenience. Please try again later.</p>
+        <div class="language-switch">
+            <button onclick="switchToEnglish()">English</button>
+            <button onclick="switchToArabic()">العربية</button>
         </div>
-        
-        <p style="margin-top: 30px; opacity: 0.8; font-size: 0.8em;" 
-           data-en="* Language switch for preview purposes" 
-           data-ar="* زر تغيير اللغة للعرض المسبق فقط">
-            * Language switch for preview purposes
-        </p>
     </div>
 
     <script>
-        function changeLanguage(lang) {
-            // Update text content
-            document.querySelectorAll('[data-en], [data-ar]').forEach(element => {
-                element.textContent = element.getAttribute(`data-${lang}`);
-            });
-
-            // Update button states
-            document.getElementById('enBtn').disabled = (lang === 'en');
-            document.getElementById('arBtn').disabled = (lang === 'ar');
-
-            // Update document direction and language
-            document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
-            document.documentElement.setAttribute('lang', lang);
-
-            // Save preference
-            localStorage.setItem('siteLang', lang);
+        function switchToEnglish() {
+            document.querySelector('h1').innerText = 'Under Maintenance';
+            document.querySelector('p').innerText = 'Sorry for the inconvenience. Please try again later.';
         }
-
-        // Load saved language
-        const savedLang = localStorage.getItem('siteLang') || 'en';
-        changeLanguage(savedLang);
+        function switchToArabic() {
+            document.querySelector('h1').innerText = 'تحت الصيانة';
+            document.querySelector('p').innerText = 'نعتذر عن الإزعاج. الرجاء المحاولة لاحقًا.';
+        }
     </script>
 </body>
 </html>
