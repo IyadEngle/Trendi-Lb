@@ -1,31 +1,120 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>الصيانة</title>
+    <title>Under Maintenance</title>
     <style>
+        :root {
+            --bg-color: #000000;
+            --text-color: #ffffff;
+            --btn-bg: #444444;
+        }
+        
         body {
-            font-family: Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            background-color: #f4f4f4;
-            text-align: center;
+            font-family: 'Arial', sans-serif;
+            transition: all 0.3s;
         }
-        .message {
-            background: white;
+
+        .container {
+            text-align: center;
+            max-width: 600px;
             padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
+            margin: 0 0 20px 0;
+        }
+
+        p {
+            font-size: clamp(0.9rem, 2.5vw, 1.2rem);
+            line-height: 1.6;
+        }
+
+        .lang-switch {
+            margin-top: 30px;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        button {
+            background-color: var(--btn-bg);
+            color: var(--text-color);
+            border: none;
+            padding: 12px 24px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            font-size: 1rem;
+        }
+
+        button:hover {
+            background-color: #666666;
+        }
+
+        button:disabled {
+            background-color: #333333;
+            cursor: not-allowed;
+        }
+
+        /* RTL Support */
+        [dir="rtl"] {
+            font-family: 'Arial Arabic', 'Segoe UI', sans-serif;
         }
     </style>
 </head>
 <body>
-    <div class="message">
-        <h1>الموقع تحت الصيانة</h1>
-        <p>نحن نعمل حاليًا على تحسين تجربتك. شكرًا لصبرك!</p>
+    <div class="container">
+        <h1 data-en="Under Maintenance" data-ar="الموقع قيد الصيانة">Under Maintenance</h1>
+        <p data-en="We're currently performing scheduled maintenance. Please check back later." 
+           data-ar="نقوم حاليًا بإجراء صيانة مخططة. يرجى المحاولة مرة أخرى لاحقًا.">
+            We're currently performing scheduled maintenance. Please check back later.
+        </p>
+        
+        <div class="lang-switch">
+            <button onclick="changeLanguage('en')" id="enBtn" disabled>English</button>
+            <button onclick="changeLanguage('ar')" id="arBtn">العربية</button>
+        </div>
+        
+        <p style="margin-top: 30px; opacity: 0.8; font-size: 0.8em;" 
+           data-en="* Language switch for preview purposes" 
+           data-ar="* زر تغيير اللغة للعرض المسبق فقط">
+            * Language switch for preview purposes
+        </p>
     </div>
+
+    <script>
+        function changeLanguage(lang) {
+            // Update text content
+            document.querySelectorAll('[data-en], [data-ar]').forEach(element => {
+                element.textContent = element.getAttribute(`data-${lang}`);
+            });
+
+            // Update button states
+            document.getElementById('enBtn').disabled = (lang === 'en');
+            document.getElementById('arBtn').disabled = (lang === 'ar');
+
+            // Update document direction and language
+            document.documentElement.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
+            document.documentElement.setAttribute('lang', lang);
+
+            // Save preference
+            localStorage.setItem('siteLang', lang);
+        }
+
+        // Load saved language
+        const savedLang = localStorage.getItem('siteLang') || 'en';
+        changeLanguage(savedLang);
+    </script>
 </body>
-</html>
+</html>a
